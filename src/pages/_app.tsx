@@ -1,18 +1,46 @@
-import { type Session } from 'next-auth'
 import { SessionProvider } from 'next-auth/react'
-import { type AppType } from 'next/app'
+import Head from 'next/head'
+import { MantineProvider } from '@mantine/core'
 import { api } from '~/utils/api'
-import '~/styles/globals.css'
+import type { NextPage } from 'next'
+import type { Session } from 'next-auth'
+import type { AppProps } from 'next/app'
 
-const MyApp: AppType<{ session: Session | null }> = ({
+export type NextPageWithLayout<P = {}, IP = P> = NextPage<P, IP> & {
+  getLayout?: (page: React.ReactElement) => React.ReactNode
+}
+
+type AppPropsWithLayout = AppProps & {
+  Component: NextPageWithLayout
+  session: Session | null
+}
+
+const App = ({
   Component,
   pageProps: { session, ...pageProps }
-}) => {
+}: AppPropsWithLayout) => {
+  const getLayout = Component.getLayout ?? ((page) => page)
+
   return (
-    <SessionProvider session={session}>
-      <Component {...pageProps} />
-    </SessionProvider>
+    <>
+      <Head>
+        <title>Greasify</title>
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width"
+        />
+      </Head>
+      <MantineProvider
+        withGlobalStyles
+        withNormalizeCSS
+        theme={{ colorScheme: 'dark' }}
+      >
+        <SessionProvider session={session}>
+          {getLayout(<Component {...pageProps} />)}
+        </SessionProvider>
+      </MantineProvider>
+    </>
   )
 }
 
-export default api.withTRPC(MyApp)
+export default api.withTRPC(App)
