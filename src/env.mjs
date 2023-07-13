@@ -7,8 +7,6 @@ export const env = createEnv({
    * isn't built with invalid env vars.
    */
   server: {
-    DIRECT_URL: z.string().url(),
-    DATABASE_URL: z.string().url(),
     NODE_ENV: z.enum([
       'development',
       'test',
@@ -22,9 +20,11 @@ export const env = createEnv({
       (str) => process.env.VERCEL_URL ?? str,
       process.env.VERCEL ? z.string().min(1) : z.string().url()
     ),
-    SUPABASE_PRIVATE_KEY: z.string(),
+    DIRECT_URL: z.string().url(),
+    DATABASE_URL: z.string().url(),
     GITHUB_CLIENT_ID: z.string(),
-    GITHUB_CLIENT_SECRET: z.string()
+    GITHUB_CLIENT_SECRET: z.string(),
+    SUPABASE_PRIVATE_KEY: z.string()
   },
 
   /**
@@ -42,13 +42,21 @@ export const env = createEnv({
    * middlewares) or client-side so we need to destruct manually.
    */
   runtimeEnv: {
+    NODE_ENV: process.env.NODE_ENV,
+
+    /** Prisma */
     DIRECT_URL: process.env.DIRECT_URL,
     DATABASE_URL: process.env.DATABASE_URL,
-    NODE_ENV: process.env.NODE_ENV,
+
+    /** NextAuth */
     NEXTAUTH_URL: process.env.NEXTAUTH_URL,
     NEXTAUTH_SECRET: process.env.NEXTAUTH_SECRET,
+
+    /** NextAuth GitHub Provider */
     GITHUB_CLIENT_ID: process.env.GITHUB_CLIENT_ID,
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
+
+    /** Supabase */
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
     NEXT_PUBLIC_SUPABASE_ANON_KEY: process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY,
     SUPABASE_PRIVATE_KEY: process.env.SUPABASE_PRIVATE_KEY

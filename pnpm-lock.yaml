@@ -6,58 +6,58 @@ settings:
 
 dependencies:
   '@emotion/react':
-    specifier: ^11.11.1
+    specifier: 11.11.1
     version: 11.11.1(@types/react@18.2.14)(react@18.2.0)
   '@emotion/server':
-    specifier: ^11.11.0
+    specifier: 11.11.0
     version: 11.11.0
   '@mantine/core':
-    specifier: ^6.0.16
+    specifier: 6.0.16
     version: 6.0.16(@emotion/react@11.11.1)(@mantine/hooks@6.0.16)(@types/react@18.2.14)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/hooks':
-    specifier: ^6.0.16
+    specifier: 6.0.16
     version: 6.0.16(react@18.2.0)
   '@mantine/next':
-    specifier: ^6.0.16
+    specifier: 6.0.16
     version: 6.0.16(@emotion/react@11.11.1)(@emotion/server@11.11.0)(next@13.4.9)(react-dom@18.2.0)(react@18.2.0)
   '@mantine/notifications':
-    specifier: ^6.0.16
+    specifier: 6.0.16
     version: 6.0.16(@mantine/core@6.0.16)(@mantine/hooks@6.0.16)(react-dom@18.2.0)(react@18.2.0)
   '@next-auth/prisma-adapter':
-    specifier: ^1.0.7
+    specifier: 1.0.7
     version: 1.0.7(@prisma/client@5.0.0)(next-auth@4.22.1)
   '@prisma/client':
-    specifier: ^5.0.0
+    specifier: 5.0.0
     version: 5.0.0(prisma@5.0.0)
   '@t3-oss/env-nextjs':
-    specifier: ^0.6.0
+    specifier: 0.6.0
     version: 0.6.0(typescript@5.1.6)(zod@3.21.4)
   '@tabler/icons-react':
-    specifier: 2.24.0
-    version: 2.24.0(react@18.2.0)
+    specifier: 2.25.0
+    version: 2.25.0(react@18.2.0)
   '@tanstack/react-query':
-    specifier: ^4.29.19
+    specifier: 4.29.19
     version: 4.29.19(react-dom@18.2.0)(react@18.2.0)
   '@trpc/client':
-    specifier: ^10.34.0
+    specifier: 10.34.0
     version: 10.34.0(@trpc/server@10.34.0)
   '@trpc/next':
-    specifier: ^10.34.0
+    specifier: 10.34.0
     version: 10.34.0(@tanstack/react-query@4.29.19)(@trpc/client@10.34.0)(@trpc/react-query@10.34.0)(@trpc/server@10.34.0)(next@13.4.9)(react-dom@18.2.0)(react@18.2.0)
   '@trpc/react-query':
-    specifier: ^10.34.0
+    specifier: 10.34.0
     version: 10.34.0(@tanstack/react-query@4.29.19)(@trpc/client@10.34.0)(@trpc/server@10.34.0)(react-dom@18.2.0)(react@18.2.0)
   '@trpc/server':
-    specifier: ^10.34.0
+    specifier: 10.34.0
     version: 10.34.0
   next:
-    specifier: ^13.4.9
+    specifier: 13.4.9
     version: 13.4.9(@babel/core@7.22.9)(react-dom@18.2.0)(react@18.2.0)
   next-auth:
-    specifier: ^4.22.1
+    specifier: 4.22.1
     version: 4.22.1(next@13.4.9)(react-dom@18.2.0)(react@18.2.0)
   nextjs-cors:
-    specifier: ^2.1.2
+    specifier: 2.1.2
     version: 2.1.2(next@13.4.9)
   react:
     specifier: 18.2.0
@@ -69,27 +69,27 @@ dependencies:
     specifier: 1.12.4
     version: 1.12.4
   zod:
-    specifier: ^3.21.4
+    specifier: 3.21.4
     version: 3.21.4
 
 devDependencies:
   '@crashmax/prettier-config':
-    specifier: ^3.2.1
+    specifier: 3.2.1
     version: 3.2.1(@ianvs/prettier-plugin-sort-imports@3.7.1)(prettier-plugin-multiline-arrays@1.1.2)(prettier@2.8.1)
   '@types/node':
-    specifier: ^18.16.0
-    version: 18.16.0
+    specifier: 18.16.19
+    version: 18.16.19
   '@types/react':
-    specifier: ^18.2.14
+    specifier: 18.2.14
     version: 18.2.14
   '@types/react-dom':
-    specifier: ^18.2.6
-    version: 18.2.6
+    specifier: 18.2.7
+    version: 18.2.7
   prisma:
-    specifier: ^5.0.0
+    specifier: 5.0.0
     version: 5.0.0
   typescript:
-    specifier: ^5.1.6
+    specifier: 5.1.6
     version: 5.1.6
 
 packages:
@@ -845,18 +845,18 @@ packages:
       zod: 3.21.4
     dev: false
 
-  /@tabler/icons-react@2.24.0(react@18.2.0):
-    resolution: {integrity: sha512-0pNc+ffp4HZCsozv9aN/hSDiC/RTGozTmf0MCL4U9NIo8yMQh8q3zEfXRNr18IM2InyIBJL95/1J2kzgU2lYeA==}
+  /@tabler/icons-react@2.25.0(react@18.2.0):
+    resolution: {integrity: sha512-so/amZZcvuZBBTMinReI219ek1MwlZfccGfRu7IwXEhgHftFTfyBOvTK9Kgf4vM+9+i0CcuVRoxyfQiuUwYUWg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
-      '@tabler/icons': 2.24.0
+      '@tabler/icons': 2.25.0
       prop-types: 15.8.1
       react: 18.2.0
     dev: false
 
-  /@tabler/icons@2.24.0:
-    resolution: {integrity: sha512-Otv6zrVF3HU54G6FK7OPODcQmKR9KgM6Ppi+ib3gHHB1LZEs2HIdQJYTHP5dGE+yOQWtXS9ZnGmSZDkSFLbkkg==}
+  /@tabler/icons@2.25.0:
+    resolution: {integrity: sha512-Z+FtSZoG/CM1TMCgg7elUew2m0+qMdh5gutMhvxiIY77KIIsE6L/6fUBy+rPXWE9v7MV296fsnCvbpfgwpXupQ==}
     dev: false
 
   /@tanstack/query-core@4.29.19:
@@ -930,8 +930,8 @@ packages:
     resolution: {integrity: sha512-2VMW44Fpaoyqb50dBtzdSWMhqt8lmoJiocEyBBeDb03R0W+XrzbVD5kU/wqKPlcp1DWeNCkOEIMtetMZCfo1hA==}
     dev: false
 
-  /@types/node@18.16.0:
-    resolution: {integrity: sha512-BsAaKhB+7X+H4GnSjGhJG9Qi8Tw+inU9nJDwmD5CgOmBLEI6ArdhikpLX7DjbjDRDTbqZzU2LSQNZg8WGPiSZQ==}
+  /@types/node@18.16.19:
+    resolution: {integrity: sha512-IXl7o+R9iti9eBW4Wg2hx1xQDig183jj7YLn8F7udNceyfkbn1ZxmzZXuak20gR40D7pIkIY1kYGx5VIGbaHKA==}
     dev: true
 
   /@types/parse-json@4.0.0:
@@ -941,8 +941,8 @@ packages:
   /@types/prop-types@15.7.5:
     resolution: {integrity: sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==}
 
-  /@types/react-dom@18.2.6:
-    resolution: {integrity: sha512-2et4PDvg6PVCyS7fuTc4gPoksV58bW0RwSxWKcPRcHZf0PRUGq03TKcD/rUHe3azfV6/5/biUBJw+HhCQjaP0A==}
+  /@types/react-dom@18.2.7:
+    resolution: {integrity: sha512-GRaAEriuT4zp9N4p1i8BDBYmEyfo+xQ3yHjJU4eiK5NDa1RmUZG+unZABUTK4/Ox/M+GaHwb6Ow8rUITrtjszA==}
     dependencies:
       '@types/react': 18.2.14
     dev: true
@@ -985,7 +985,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001515
-      electron-to-chromium: 1.4.457
+      electron-to-chromium: 1.4.459
       node-releases: 2.0.13
       update-browserslist-db: 1.0.11(browserslist@4.21.9)
 
@@ -1133,8 +1133,8 @@ packages:
       readable-stream: 2.3.8
     dev: false
 
-  /electron-to-chromium@1.4.457:
-    resolution: {integrity: sha512-/g3UyNDmDd6ebeWapmAoiyy+Sy2HyJ+/X8KyvNeHfKRFfHaA2W8oF5fxD5F3tjBDcjpwo0iek6YNgxNXDBoEtA==}
+  /electron-to-chromium@1.4.459:
+    resolution: {integrity: sha512-XXRS5NFv8nCrBL74Rm3qhJjA2VCsRFx0OjHKBMPI0otij56aun8UWiKTDABmd5/7GTR021pA4wivs+Ri6XCElg==}
 
   /entities@2.2.0:
     resolution: {integrity: sha512-p92if5Nz619I0w+akJrLZH0MX0Pb5DX39XOwQTtXSdQQOaYH03S1uIQp4mhOZtAXrxq4ViO67YTiLBo2638o9A==}
