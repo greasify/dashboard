@@ -1,5 +1,5 @@
 import { notifications } from '@mantine/notifications'
-import { IconCheck, IconCross } from '@tabler/icons-react'
+import { IconCheck, IconCircleX } from '@tabler/icons-react'
 
 type NotificationParams = {
   id: string
@@ -47,7 +47,7 @@ export function errorNotification({
     title,
     message,
     color: 'red',
-    icon: <IconCross size="1rem" />
+    icon: <IconCircleX size="1rem" />
   })
 }
 
@@ -56,6 +56,6 @@ export function globalErrorNotification(error: any): void {
     color: 'red',
     title: 'Something went wrong',
     message: (error as Error).message,
-    icon: <IconCross size="1rem" />
+    icon: <IconCircleX size="1rem" />
   })
 }
