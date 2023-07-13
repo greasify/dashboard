@@ -1,8 +1,16 @@
+import Head from 'next/head'
 import { DashboardLayout } from '~/components/dashboard/layout'
 import { NextPageWithLayout } from '~/pages/_app'
 
 const Dashboard: NextPageWithLayout = () => {
-  return <h1>Dashboard</h1>
+  return (
+    <>
+      <Head>
+        <title>Hello</title>
+      </Head>
+      <h1>Dashboard</h1>
+    </>
+  )
 }
 
 Dashboard.getLayout = (page) => {

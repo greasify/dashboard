@@ -1,6 +1,7 @@
 import { SessionProvider } from 'next-auth/react'
 import Head from 'next/head'
 import { MantineProvider } from '@mantine/core'
+import { Notifications } from '@mantine/notifications'
 import { api } from '~/utils/api'
 import type { NextPage } from 'next'
 import type { Session } from 'next-auth'
@@ -38,6 +39,7 @@ const App = ({
         <SessionProvider session={session}>
           {getLayout(<Component {...pageProps} />)}
         </SessionProvider>
+        <Notifications />
       </MantineProvider>
     </>
   )

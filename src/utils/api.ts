@@ -4,12 +4,14 @@
  *
  * We also create a few inference helpers for input and output types.
  */
+import '@trpc/server'
+import { MutationCache } from '@tanstack/react-query'
 import { httpBatchLink, loggerLink } from '@trpc/client'
 import { createTRPCNext } from '@trpc/next'
-import '@trpc/server'
 import superjson from 'superjson'
-import { type AppRouter } from '~/server/api/root'
+import { globalErrorNotification } from './notifications'
 import type { inferRouterInputs, inferRouterOutputs } from '@trpc/server'
+import type { AppRouter } from '~/server/api/root'
 
 const getBaseUrl = () => {
   if (typeof window !== 'undefined') return '' // browser should use relative url
@@ -21,6 +23,23 @@ const getBaseUrl = () => {
 export const api = createTRPCNext<AppRouter>({
   config() {
     return {
+      queryClientConfig: {
+        mutationCache: new MutationCache({
+          onError(error, variables, context, mutation) {
+            if (mutation.options.onError) return
+            globalErrorNotification(error)
+          }
+        }),
+        defaultOptions: {
+          queries: {
+            retry: false
+          },
+          mutations: {
+            retry: false
+          }
+        }
+      },
+
       /**
        * Transformer used for data de-serialization from the server.
        *
