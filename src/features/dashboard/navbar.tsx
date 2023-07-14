@@ -1,6 +1,5 @@
 import { signOut } from 'next-auth/react'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
 import {
   Center,
   createStyles,
@@ -120,7 +119,7 @@ export function DashboardNavbar() {
       >
         <Stack
           justify="center"
-          spacing={0}
+          spacing="xs"
         >
           {links}
         </Stack>

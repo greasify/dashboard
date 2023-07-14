@@ -1,17 +1,17 @@
 import { TRPCError } from '@trpc/server'
 import { z } from 'zod'
-import {
-  createTRPCRouter,
-  protectedProcedure,
-  publicProcedure
-} from '~/server/api/trpc'
+import { createTRPCRouter, protectedProcedure } from '~/server/api/trpc'
 
 export const applicationsRouter = createTRPCRouter({
   get: protectedProcedure
-    .input(z.string().optional())
+    .input(
+      z.object({
+        id: z.string().optional()
+      })
+    )
     .query(async ({ ctx, input }) => {
       const application = await ctx.prisma.application.findFirst({
-        where: { userId: ctx.session.user.id, id: input }
+        where: { userId: ctx.session.user.id, id: input.id }
       })
 
       if (!application) {
@@ -24,8 +24,10 @@ export const applicationsRouter = createTRPCRouter({
       return application
     }),
 
-  list: publicProcedure.query(({ ctx }) => {
-    return ctx.prisma.application.findMany()
+  list: protectedProcedure.query(({ ctx }) => {
+    return ctx.prisma.application.findMany({
+      where: { userId: ctx.session.user.id }
+    })
   }),
 
   create: protectedProcedure
@@ -50,12 +52,13 @@ export const applicationsRouter = createTRPCRouter({
   delete: protectedProcedure
     .input(
       z.object({
+        id: z.string(),
         name: z.string()
       })
     )
     .mutation(({ ctx, input }) => {
       return ctx.prisma.application.delete({
-        where: { userId: ctx.session.user.id, name: input.name }
+        where: { userId: ctx.session.user.id, id: input.id }
       })
     })
 })

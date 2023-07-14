@@ -2,12 +2,12 @@ import { Box } from '@mantine/core'
 import { DashboardLayout } from '~/features/dashboard/layout'
 import type { NextPageWithLayout } from '~/pages/_app'
 
-const Home: NextPageWithLayout = () => {
+const Settings: NextPageWithLayout = () => {
   return <Box></Box>
 }
 
-Home.getLayout = (page) => {
-  return <DashboardLayout title="Home">{page}</DashboardLayout>
+Settings.getLayout = (page) => {
+  return <DashboardLayout title="Settings">{page}</DashboardLayout>
 }
 
-export default Home
+export default Settings

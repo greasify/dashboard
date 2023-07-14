@@ -1,29 +1,22 @@
-import { NextRouter, withRouter } from 'next/router'
-import { Box, Title } from '@mantine/core'
+import { withRouter } from 'next/router'
+import { DashboardLayout } from '~/features/dashboard/layout'
 import { api } from '~/utils/api'
+import type { NextRouter } from 'next/router'
 
 type Props = {
   router: NextRouter
 }
 
-function ApplicationSettings(props: Props) {
-  const application = api.applications.get.useQuery(
-    props.router.query.applicationId as string
-  )
-
-  if (application.isError) {
-    return <Title>Error</Title>
-  }
-
-  if (application.isLoading) {
-    return <Title>Loading...</Title>
-  }
+function Application(props: Props) {
+  const application = api.applications.get.useQuery({
+    id: props.router.query.applicationId as string
+  })
 
   return (
-    <Box>
+    <DashboardLayout title={'Application: ' + application.data?.name}>
       <pre>{JSON.stringify(application.data, null, 2)}</pre>
-    </Box>
+    </DashboardLayout>
   )
 }
 
-export default withRouter(ApplicationSettings)
+export default withRouter(Application)
