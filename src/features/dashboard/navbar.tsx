@@ -1,5 +1,6 @@
-import { signOut } from 'next-auth/react'
+import { signOut, useSession } from 'next-auth/react'
 import { useRouter } from 'next/router'
+import { useMemo } from 'react'
 import {
   Center,
   createStyles,
@@ -9,13 +10,9 @@ import {
   Tooltip,
   UnstyledButton
 } from '@mantine/core'
-import {
-  IconHome,
-  IconLogout,
-  IconPuzzleFilled,
-  IconSettings
-} from '@tabler/icons-react'
-import { IconApps } from '@tabler/icons-react'
+import { Role } from '@prisma/client'
+import { IconLogout, IconPuzzleFilled } from '@tabler/icons-react'
+import { navbarRoutes } from './navbar-routes'
 
 const useStyles = createStyles((theme) => ({
   link: {
@@ -79,25 +76,26 @@ function NavbarLink({ icon: Icon, label, active, onClick }: NavbarLinkProps) {
   )
 }
 
-const mockdata = [
-  { icon: IconHome, label: 'Home', path: '/dashboard' },
-  { icon: IconApps, label: 'Applications', path: '/dashboard/applications' },
-  { icon: IconSettings, label: 'Settings', path: '/dashboard/settings' }
-]
-
 export function DashboardNavbar() {
   const router = useRouter()
+  const session = useSession()
 
-  const links = mockdata.map((link) => (
-    <NavbarLink
-      {...link}
-      key={link.label}
-      active={router.pathname === link.path}
-      onClick={() => {
-        router.push(link.path)
-      }}
-    />
-  ))
+  const navbarLinks = navbarRoutes.map((link) => {
+    if (link.isAdminOnly && session.data?.user?.role !== Role.ADMIN) {
+      return
+    }
+
+    return (
+      <NavbarLink
+        {...link}
+        key={link.label}
+        active={router.pathname === link.path}
+        onClick={() => {
+          router.push(link.path)
+        }}
+      />
+    )
+  })
 
   return (
     <Navbar
@@ -121,7 +119,7 @@ export function DashboardNavbar() {
           justify="center"
           spacing="xs"
         >
-          {links}
+          {navbarLinks}
         </Stack>
       </Navbar.Section>
       <Navbar.Section>

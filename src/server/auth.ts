@@ -3,6 +3,7 @@ import { getServerSession } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
 // import TwitchProvider from 'next-auth/providers/twitch'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
+import { Role } from '@prisma/client'
 import { env } from '~/env.mjs'
 import { prisma } from '~/server/db'
 import type { DefaultSession, NextAuthOptions } from 'next-auth'
@@ -17,15 +18,13 @@ declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
       id: string
-      // ...other properties
-      // role: UserRole;
+      role: Role
     } & DefaultSession['user']
   }
 
-  // interface User {
-  //   // ...other properties
-  //   // role: UserRole;
-  // }
+  interface User {
+    role: Role
+  }
 }
 
 /**
@@ -35,13 +34,16 @@ declare module 'next-auth' {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
-    session: ({ session, user }) => ({
-      ...session,
-      user: {
-        ...session.user,
-        id: user.id
+    session: ({ session, user }) => {
+      session.user.role = user.role
+      return {
+        ...session,
+        user: {
+          ...session.user,
+          id: user.id
+        }
       }
-    })
+    }
   },
   adapter: PrismaAdapter(prisma),
   providers: [
