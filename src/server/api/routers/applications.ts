@@ -31,7 +31,7 @@ export const applicationsRouter = createTRPCRouter({
   }),
 
   create: protectedProcedure
-    .input(z.object({ name: z.string() }))
+    .input(z.object({ name: z.string(), version: z.string() }))
     .mutation(async ({ ctx, input }) => {
       const application = await ctx.prisma.application.findFirst({
         where: { userId: ctx.session.user.id, name: input.name }
@@ -45,7 +45,11 @@ export const applicationsRouter = createTRPCRouter({
       }
 
       return ctx.prisma.application.create({
-        data: { userId: ctx.session.user.id, name: input.name }
+        data: {
+          userId: ctx.session.user.id,
+          name: input.name,
+          latestVersion: input.version
+        }
       })
     }),
 
@@ -59,6 +63,26 @@ export const applicationsRouter = createTRPCRouter({
     .mutation(({ ctx, input }) => {
       return ctx.prisma.application.delete({
         where: { userId: ctx.session.user.id, id: input.id }
+      })
+    }),
+
+  refeshAppToken: protectedProcedure
+    .input(z.object({ id: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      const application = await ctx.prisma.application.findFirst({
+        where: { userId: ctx.session.user.id, id: input.id }
+      })
+
+      if (!application) {
+        throw new TRPCError({
+          code: 'NOT_FOUND',
+          message: 'Application not found'
+        })
+      }
+
+      return ctx.prisma.application.update({
+        where: { userId: ctx.session.user.id, id: input.id },
+        data: { appToken: crypto.randomUUID() }
       })
     })
 })

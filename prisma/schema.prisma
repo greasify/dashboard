@@ -55,13 +55,24 @@ model VerificationToken {
 }
 
 model Application {
-    id      String   @id @default(cuid())
-    userId  String
-    name    String
-    scripts Script[]
-    user    User     @relation(fields: [userId], references: [id])
+    id            String   @id @default(cuid())
+    userId        String
+    name          String
+    latestVersion String
+    bannerUrl     String   @default("default.png")
+    appToken      String   @default(uuid())
+    isPrivate     Boolean  @default(false)
+    isBanned      Boolean  @default(false)
+    isVerified    Boolean  @default(false)
+    isDeprecated  Boolean  @default(false)
+    createdAt     DateTime @default(now())
+    updatedAt     DateTime @default(now())
+    dailyInstalls Int      @default(0)
+    totalInstalls Int      @default(0)
+    scripts       Script[]
+    user          User     @relation(fields: [userId], references: [id])
 
-    @@unique([name])
+    @@unique([name, appToken])
 }
 
 model Script {
@@ -69,6 +80,7 @@ model Script {
     applicationId String
     version       String
     application   Application @relation(fields: [applicationId], references: [id])
+    createdAt     DateTime    @default(now())
 
     @@unique([version])
 }

@@ -7,7 +7,7 @@
     "dev": "next dev",
     "build": "next build",
     "format": "prettier --write '**/*.{js,ts,tsx,json}'",
-    "postinstall": "prisma generate",
+    "postinstall": "pnpm db:sync",
     "db:push": "prisma db push",
     "db:sync": "prisma generate",
     "db:studio": "prisma studio"

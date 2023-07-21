@@ -16,7 +16,7 @@ export function DashboardLayout({ title: subTitle = '', children }: Props) {
         <title>{title}</title>
       </Head>
       <Container size="lg">
-        <Title mb="lg">{title}</Title>
+        <Title mb="lg">{subTitle}</Title>
         {children}
       </Container>
     </AppShell>

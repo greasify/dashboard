@@ -48,7 +48,7 @@ export const authOptions: NextAuthOptions = {
     GitHubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET
-    }),
+    })
     // TwitchProvider({
     //   clientId: env.TWITCH_CLIENT_ID,
     //   clientSecret: env.TWITCH_CLIENT_SECRET
