@@ -24,8 +24,8 @@ export const env = createEnv({
     DATABASE_URL: z.string().url(),
     GITHUB_CLIENT_ID: z.string(),
     GITHUB_CLIENT_SECRET: z.string(),
-    TWITCH_CLIENT_ID: z.string(),
-    TWITCH_CLIENT_SECRET: z.string(),
+    // TWITCH_CLIENT_ID: z.string(),
+    // TWITCH_CLIENT_SECRET: z.string(),
     SUPABASE_PRIVATE_KEY: z.string()
   },
 
@@ -59,8 +59,8 @@ export const env = createEnv({
     GITHUB_CLIENT_SECRET: process.env.GITHUB_CLIENT_SECRET,
 
     /** NextAuth Twitch Provider */
-    TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
-    TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET,
+    // TWITCH_CLIENT_ID: process.env.TWITCH_CLIENT_ID,
+    // TWITCH_CLIENT_SECRET: process.env.TWITCH_CLIENT_SECRET,
 
     /** Supabase */
     NEXT_PUBLIC_SUPABASE_URL: process.env.NEXT_PUBLIC_SUPABASE_URL,
