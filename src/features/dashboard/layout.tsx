@@ -7,11 +7,13 @@ type Props = {
   children: React.ReactNode
 }
 
-export function DashboardLayout({ title = '', children }: Props) {
+export function DashboardLayout({ title: subTitle = '', children }: Props) {
+  const title = `Greasify :: ${subTitle}`
+
   return (
     <AppShell navbar={<DashboardNavbar />}>
       <Head>
-        <title>Greasify :: {title}</title>
+        <title>{title}</title>
       </Head>
       <Container size="lg">
         <Title mb="lg">{title}</Title>

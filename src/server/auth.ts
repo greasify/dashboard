@@ -1,6 +1,7 @@
 import { type GetServerSidePropsContext } from 'next'
 import { getServerSession } from 'next-auth'
 import GitHubProvider from 'next-auth/providers/github'
+import TwitchProvider from 'next-auth/providers/twitch'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { env } from '~/env.mjs'
 import { prisma } from '~/server/db'
@@ -34,6 +35,24 @@ declare module 'next-auth' {
  */
 export const authOptions: NextAuthOptions = {
   callbacks: {
+    async signIn({ user }) {
+      try {
+        if (user.email) {
+          await prisma.user.update({
+            where: {
+              email: user.email
+            },
+            data: {
+              image: user.image
+            }
+          })
+        }
+      } catch (err) {
+        console.error(err)
+      }
+
+      return true
+    },
     session: ({ session, user }) => ({
       ...session,
       user: {
@@ -47,6 +66,10 @@ export const authOptions: NextAuthOptions = {
     GitHubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET
+    }),
+    TwitchProvider({
+      clientId: env.TWITCH_CLIENT_ID,
+      clientSecret: env.TWITCH_CLIENT_SECRET
     })
     /**
      * ...add more providers here.

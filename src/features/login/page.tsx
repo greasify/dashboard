@@ -1,13 +1,17 @@
 import { signIn } from 'next-auth/react'
+import Head from 'next/head'
 import { useState } from 'react'
 import { Button, Container, Flex, Paper, Stack, Title } from '@mantine/core'
-import { IconBrandGithub } from '@tabler/icons-react'
+import { IconBrandGithub, IconBrandTwitch } from '@tabler/icons-react'
 
 export function LoginPage() {
   const [loading, setLoading] = useState(false)
 
   return (
     <Container size={420}>
+      <Head>
+        <title>Greasify :: Login</title>
+      </Head>
       <Flex
         h="100svh"
         justify="center"
@@ -43,6 +47,20 @@ export function LoginPage() {
               fullWidth
             >
               Sign in with GitHub
+            </Button>
+            <Button
+              loading={loading}
+              onClick={() => {
+                setLoading(true)
+                signIn('twitch', {
+                  redirect: false,
+                  callbackUrl: '/dashboard'
+                })
+              }}
+              leftIcon={<IconBrandTwitch />}
+              fullWidth
+            >
+              Sign in with Twitch
             </Button>
           </Stack>
         </Paper>

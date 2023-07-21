@@ -23,25 +23,16 @@ const App = ({
   const getLayout = Component.getLayout ?? ((page) => page)
 
   return (
-    <>
-      <Head>
-        <title>Greasify</title>
-        <meta
-          name="viewport"
-          content="minimum-scale=1, initial-scale=1, width=device-width"
-        />
-      </Head>
-      <MantineProvider
-        withGlobalStyles
-        withNormalizeCSS
-        theme={{ colorScheme: 'dark' }}
-      >
-        <SessionProvider session={session}>
-          {getLayout(<Component {...pageProps} />)}
-        </SessionProvider>
-        <Notifications />
-      </MantineProvider>
-    </>
+    <MantineProvider
+      withGlobalStyles
+      withNormalizeCSS
+      theme={{ colorScheme: 'dark' }}
+    >
+      <SessionProvider session={session}>
+        {getLayout(<Component {...pageProps} />)}
+      </SessionProvider>
+      <Notifications />
+    </MantineProvider>
   )
 }
 
