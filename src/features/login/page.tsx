@@ -2,7 +2,7 @@ import { signIn } from 'next-auth/react'
 import Head from 'next/head'
 import { useState } from 'react'
 import { Button, Container, Flex, Paper, Stack, Title } from '@mantine/core'
-import { IconBrandGithub /*, IconBrandTwitch */ } from '@tabler/icons-react'
+import { IconBrandGithub } from '@tabler/icons-react'
 
 export function LoginPage() {
   const [loading, setLoading] = useState(false)
@@ -48,20 +48,6 @@ export function LoginPage() {
             >
               Sign in with GitHub
             </Button>
-            {/* <Button
-              loading={loading}
-              onClick={() => {
-                setLoading(true)
-                signIn('twitch', {
-                  redirect: false,
-                  callbackUrl: '/dashboard'
-                })
-              }}
-              leftIcon={<IconBrandTwitch />}
-              fullWidth
-            >
-              Sign in with Twitch
-            </Button> */}
           </Stack>
         </Paper>
       </Flex>

@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { AppShell, Container, Title } from '@mantine/core'
+import { AppShell, Card, Container, Title } from '@mantine/core'
 import { DashboardNavbar } from './navbar'
 
 type Props = {
@@ -17,7 +17,15 @@ export function DashboardLayout({ title: subTitle = '', children }: Props) {
       </Head>
       <Container size="lg">
         <Title mb="lg">{subTitle}</Title>
-        {children}
+        <Card
+          shadow="xl"
+          padding="lg"
+          bg="dark.7"
+          radius="md"
+          withBorder
+        >
+          {children}
+        </Card>
       </Container>
     </AppShell>
   )

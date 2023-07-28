@@ -12,7 +12,7 @@ import { initTRPC, TRPCError } from '@trpc/server'
 import { type CreateNextContextOptions } from '@trpc/server/adapters/next'
 import superjson from 'superjson'
 import { ZodError } from 'zod'
-import { getServerAuthSession } from '~/server/auth'
+import { getServerAuthSession } from '~/server/auth/auth-options'
 import { prisma } from '~/server/db'
 
 /**

@@ -9,11 +9,12 @@ type Props = {
 export function ApplicationSkeleton(props: Props) {
   const skeletons = Array.from(
     { length: props.length },
-    (_, key) => ({
-      id: '',
-      userId: `${key}`,
-      name: `${key}`
-    } as Application)
+    (_, key) =>
+      ({
+        id: '',
+        userId: `${key}`,
+        name: `${key}`
+      } as Application)
   ).map((application, index) => (
     <Grid.Col
       key={index}

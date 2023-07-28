@@ -1,11 +1,10 @@
-import { type GetServerSidePropsContext } from 'next'
 import { getServerSession } from 'next-auth'
-import GitHubProvider from 'next-auth/providers/github'
-// import TwitchProvider from 'next-auth/providers/twitch'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
 import { Role } from '@prisma/client'
 import { env } from '~/env.mjs'
 import { prisma } from '~/server/db'
+import { GithubProvider } from './github-provider'
+import type { GetServerSidePropsContext } from 'next'
 import type { DefaultSession, NextAuthOptions } from 'next-auth'
 
 /**
@@ -18,12 +17,14 @@ declare module 'next-auth' {
   interface Session extends DefaultSession {
     user: {
       id: string
-      role: Role
-    } & DefaultSession['user']
+    } & User
   }
 
   interface User {
     role: Role
+    username: string
+    website: string | null
+    bio: string | null
   }
 }
 
@@ -35,7 +36,11 @@ declare module 'next-auth' {
 export const authOptions: NextAuthOptions = {
   callbacks: {
     session: ({ session, user }) => {
+      session.user.username = user.username
+      session.user.bio = user.bio
+      session.user.website = user.website
       session.user.role = user.role
+
       return {
         ...session,
         user: {
@@ -47,14 +52,10 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(prisma),
   providers: [
-    GitHubProvider({
+    GithubProvider({
       clientId: env.GITHUB_CLIENT_ID,
       clientSecret: env.GITHUB_CLIENT_SECRET
     })
-    // TwitchProvider({
-    //   clientId: env.TWITCH_CLIENT_ID,
-    //   clientSecret: env.TWITCH_CLIENT_SECRET
-    // })
     /**
      * ...add more providers here.
      *
